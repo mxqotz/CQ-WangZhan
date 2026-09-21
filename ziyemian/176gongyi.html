@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>温州小胖传奇</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: "微软雅黑",sans-serif;
+            margin-top:80px;
+        }
+        a {
+            font-size:26px;
+            color:#ff3333;
+            font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>温州小胖传奇</h1>
+    <h2>wzxpcq.com  </h2>
+
+    <h2>做一个长期良心服</h2>
+    <h2>公平，公正，散人友好</h2>
+    <h2>    </h2>
+    <br>
+    <h2>微端下载：<a href="https://www.wzxpcq.com" target="_blank">点击下载</a></h2>
+    <br>
+    <h2>     </h2>
+
+
+
+</body>
+</html>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const hashKey = 'page_hash_wzxpcq';
+  const oldHash = localStorage.getItem(hashKey) || '';
+  try {
+    // 无缓存拉取当前页面完整源码
+    const res = await fetch(`${location.href}?_t=${Date.now()}`, { cache: 'no-store' });
+    const htmlText = await res.text();
+    // 截取前2000字符生成简易标识，减少计算量
+    const pageMark = btoa(htmlText.slice(0, 2000));
+    if (pageMark !== oldHash) {
+      localStorage.setItem(hashKey, pageMark);
+      location.reload(true);
+    }
+  } catch (e) {}
+});
+</script>
