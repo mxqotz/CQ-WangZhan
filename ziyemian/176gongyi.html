@@ -1,52 +1,212 @@
-﻿<!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
-    <title>温州小胖传奇</title>
-    <style>
-        body {
-            text-align: center;
-            font-family: "微软雅黑",sans-serif;
-            margin-top:80px;
-        }
-        a {
-            font-size:26px;
-            color:#ff3333;
-            font-weight:bold;
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>176特色公益 · 温州小胖传奇</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  font-family:"Microsoft YaHei","微软雅黑",-apple-system,"PingFang SC",sans-serif;
+  min-height:100vh;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% 0%,rgba(150,22,10,.5),rgba(18,6,10,0) 72%),
+    url(../images/dh_02.jpg) center top/cover no-repeat fixed,
+    #12060a;
+  color:#f3e3c4;
+}
+.wrap{
+  width:900px;max-width:100%;
+  margin:0 auto;
+  padding:56px 20px 70px;
+}
+
+/* 返回 */
+.back{
+  display:inline-flex;align-items:center;gap:8px;
+  margin-bottom:26px;
+  padding:10px 20px;
+  font-size:15px;text-decoration:none;
+  color:#ffd98a;
+  border:1px solid rgba(255,205,110,.4);
+  border-radius:30px;
+  background:rgba(40,10,10,.6);
+  transition:all .2s ease;
+}
+.back:hover{
+  color:#fff;
+  border-color:rgba(255,215,120,.85);
+  background:rgba(150,30,12,.7);
+  box-shadow:0 0 20px rgba(255,140,40,.5);
+}
+
+/* 头部 */
+.head{text-align:center;margin-bottom:40px}
+.head h1{
+  margin:0;
+  font-size:46px;letter-spacing:6px;
+  color:#ffd98a;
+  text-shadow:0 0 22px rgba(255,150,40,.9),0 3px 6px rgba(0,0,0,.9);
+}
+.head .site{
+  margin-top:12px;
+  font-size:17px;letter-spacing:2px;
+  color:rgba(255,224,180,.75);
+}
+.head .line{
+  width:200px;height:2px;margin:22px auto 0;
+  background:linear-gradient(90deg,rgba(255,190,90,0),rgba(255,190,90,.9),rgba(255,190,90,0));
+}
+
+/* 卡片 */
+.card{
+  margin-bottom:24px;
+  padding:28px 30px;
+  border:1px solid rgba(255,205,110,.3);
+  border-radius:14px;
+  background:linear-gradient(180deg,rgba(58,14,12,.78),rgba(22,7,9,.9));
+  box-shadow:
+    inset 0 1px 0 rgba(255,220,140,.18),
+    0 10px 26px rgba(0,0,0,.5);
+}
+.card h2{
+  margin:0 0 18px;
+  padding-left:16px;
+  font-size:24px;letter-spacing:2px;
+  color:#ffd98a;
+  border-left:4px solid #e8620f;
+  text-shadow:0 0 12px rgba(255,150,40,.6);
+}
+
+/* 卖点列表 */
+.points{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 18px;margin:0;padding:0;list-style:none}
+.points li{
+  position:relative;
+  padding:12px 14px 12px 42px;
+  font-size:17px;
+  color:#f6e6c8;
+  border-radius:9px;
+  background:rgba(255,190,90,.06);
+  border:1px solid rgba(255,205,110,.16);
+}
+.points li::before{
+  content:"◆";
+  position:absolute;left:16px;top:50%;transform:translateY(-50%);
+  font-size:14px;color:#ff9a30;
+  text-shadow:0 0 10px rgba(255,150,40,.9);
+}
+
+/* 下载按钮 */
+.dl{
+  display:flex;align-items:center;justify-content:center;
+  height:88px;
+  margin-top:6px;
+  font-size:28px;font-weight:bold;letter-spacing:3px;
+  text-decoration:none;
+  color:#FFCE6B;
+  border:1px solid rgba(255,235,180,.6);
+  border-radius:12px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.62) 0%,rgba(255,255,255,.08) 9%,rgba(255,255,255,0) 20%,rgba(255,255,255,0) 74%,rgba(255,224,150,.48) 92%,rgba(255,224,150,.18) 100%),
+    radial-gradient(ellipse 60% 74% at 50% 45%,#FF9A30 0%,#F05216 40%,#C22E06 72%,#8C0400 100%);
+  text-shadow:
+    -1px 0 0 #7A3200, 1px 0 0 #7A3200,
+    0 -1px 0 #7A3200, 0 1px 0 #7A3200,
+    0 0 8px rgba(255,190,60,.95),
+    0 2px 3px rgba(0,0,0,.5);
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.6),
+    inset 0 -2px 4px rgba(0,0,0,.3),
+    0 4px 10px rgba(0,0,0,.45);
+  transition:transform .18s ease,filter .18s ease,box-shadow .18s ease;
+}
+.dl:hover{
+  transform:translateY(-3px);
+  filter:brightness(1.14) saturate(1.08);
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.7),
+    inset 0 -2px 4px rgba(0,0,0,.3),
+    0 0 30px rgba(255,150,40,.8),
+    0 10px 22px rgba(0,0,0,.55);
+}
+.dl:active{transform:translateY(-1px) scale(.995)}
+.dl .sub{
+  display:block;
+  margin-top:4px;
+  font-size:14px;font-weight:normal;letter-spacing:1px;
+  color:rgba(255,235,190,.8);
+  text-shadow:0 1px 2px rgba(0,0,0,.7);
+}
+.dl .inner{text-align:center;line-height:1.25}
+
+/* 提示 */
+.notice{
+  margin-top:22px;
+  padding:14px 18px;
+  font-size:14px;line-height:1.9;
+  text-align:center;
+  color:rgba(255,224,180,.7);
+  border-top:1px dashed rgba(255,205,110,.25);
+}
+
+@media (max-width:760px){
+  .wrap{padding:34px 16px 50px}
+  .head h1{font-size:30px;letter-spacing:3px}
+  .head .site{font-size:14px}
+  .card{padding:20px 18px}
+  .card h2{font-size:19px;margin-bottom:14px}
+  .points{grid-template-columns:1fr}
+  .points li{font-size:15px}
+  .dl{height:72px;font-size:21px;letter-spacing:2px}
+  .dl .sub{font-size:12px}
+}
+</style>
 </head>
 <body>
-    <h1>温州小胖传奇</h1>
-    <h2>wzxpcq.com  </h2>
+<div class="wrap">
 
-    <h2>做一个长期良心服</h2>
-    <h2>公平，公正，散人友好</h2>
-    <h2>    </h2>
-    <br>
-    <h2>微端下载：<a href="https://www.wzxpcq.com" target="_blank">点击下载</a></h2>
-    <br>
-    <h2>     </h2>
+  <a class="back" href="../index.html">← 返回首页</a>
 
+  <div class="head">
+    <h1>176 特色公益</h1>
+    <div class="site">wzxpcq.com</div>
+    <div class="line"></div>
+  </div>
 
+  <div class="card">
+    <h2>版本介绍</h2>
+    <p style="margin:0;font-size:16px;line-height:2;color:#f6e6c8">
+      温州小胖传奇 1.76 特色公益零充版，做一个长期良心服。装备全靠打，一切看脸，不设暗坑，
+      公平、公正、散人友好，元宝可回收，散人也能白手起家。
+    </p>
+  </div>
 
+  <div class="card">
+    <h2>版本特色</h2>
+    <ul class="points">
+      <li>1.76 复古核心，原汁原味传奇</li>
+      <li>零充可玩，装备全部打怪爆出</li>
+      <li>公平公正，无隐藏消费套路</li>
+      <li>散人友好，一个人也能玩得下去</li>
+      <li>长期稳定开区，不跑路不合区跑路</li>
+      <li>打金回收，散人打宝有收益</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>微端下载</h2>
+    <a class="dl" href="https://www.wzxpcq.com" target="_blank" rel="noopener">
+      <span class="inner">
+        点击下载微端
+        <span class="sub">www.wzxpcq.com</span>
+      </span>
+    </a>
+    <div class="notice">
+      下载后解压到任意目录运行，首次登录自动更新，请耐心等待。
+    </div>
+  </div>
+
+</div>
 </body>
 </html>
-
-<script>
-document.addEventListener('DOMContentLoaded', async () => {
-  const hashKey = 'page_hash_wzxpcq';
-  const oldHash = localStorage.getItem(hashKey) || '';
-  try {
-    // 无缓存拉取当前页面完整源码
-    const res = await fetch(`${location.href}?_t=${Date.now()}`, { cache: 'no-store' });
-    const htmlText = await res.text();
-    // 截取前2000字符生成简易标识，减少计算量
-    const pageMark = btoa(htmlText.slice(0, 2000));
-    if (pageMark !== oldHash) {
-      localStorage.setItem(hashKey, pageMark);
-      location.reload(true);
-    }
-  } catch (e) {}
-});
-</script>

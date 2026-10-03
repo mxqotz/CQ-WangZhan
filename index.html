@@ -1,132 +1,309 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>温州小胖传奇 1.76特色公益零充 散人友好</title>
-<style type="text/css">
+<style>
+/* ============ 背景海报：dh_01(480) + dh_02(296) + dh_03(310) 顺序无缝拼接 ============
+   三张图同为 1920 宽，是同一张海报横切下来的三段。
+   每一段都严格锁定自身原始宽高比，只用「宽度 100% + 原始比例」来定高，
+   绝不使用 cover / 100% 100% 这类会裁切或拉伸的写法，因此图案不会变形。
+   段与段之间没有留白、没有重叠，严丝合缝还原成一整张完整海报。
+   ================================================================================ */
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
 body{
-	margin:0px;
+  font-family:"Microsoft YaHei","微软雅黑",-apple-system,"PingFang SC",sans-serif;
+  background:#1a0709;
+  color:#f3e3c4;
+  overflow-x:hidden;
 }
-/* ===== 导航按钮:还原原图金属红美术风格,文字可直接在 HTML 里改 ===== */
+
+.poster{width:100%}
+
+/* ---- 第 1 段：dh_01  1920x480 ---- */
+.band1{
+  width:100%;
+  aspect-ratio:1920 / 480;
+  background:url(images/dh_01.jpg) center center / 100% 100% no-repeat;
+}
+
+/* ---- 第 2 段：dh_02  1920x296 ----
+   图片本身锁定原始比例铺在顶部，绝不拉伸；
+   内容比原图高时，多出来的部分用 dh_02 底边色(#693a2f)填充，
+   而这个颜色同时就是 dh_03 的顶边色，所以进入下一段时依旧无缝。 */
+.band2{
+  position:relative;
+  width:100%;
+  background-color:#693a2f;      /* = dh_02 底边色 = dh_03 顶边色 */
+  overflow:hidden;
+}
+.band2 .bg{
+  position:absolute;top:0;left:0;
+  width:100%;
+  aspect-ratio:1920 / 296;
+  background:url(images/dh_02.jpg) center top / 100% 100% no-repeat;
+  pointer-events:none;
+}
+/* 内容区压暗：两端透明，保证上下接缝颜色不受影响 */
+.band2 .shade{
+  position:absolute;top:0;left:0;right:0;bottom:0;
+  background:linear-gradient(180deg,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,.34) 26%,
+    rgba(0,0,0,.34) 84%,
+    rgba(0,0,0,0) 100%);
+  pointer-events:none;
+}
+
+/* ---- 第 3 段：dh_03  1920x310 ----
+   同样锁定原始比例；超高部分用 dh_03 底边色(#52221d)填充。 */
+.band3{
+  position:relative;
+  width:100%;
+  background-color:#52221d;      /* = dh_03 底边色 */
+  overflow:hidden;
+}
+.band3 .bg{
+  position:absolute;top:0;left:0;
+  width:100%;
+  aspect-ratio:1920 / 310;
+  background:url(images/dh_03.jpg) center top / 100% 100% no-repeat;
+  pointer-events:none;
+}
+
+/* ---- 内容容器 ---- */
+.layer{position:relative;z-index:2}
+.wrap{width:1200px;max-width:100%;margin:0 auto;padding:0 20px}
+
+/* 区段标题 */
+.sec-title{
+  display:flex;align-items:center;justify-content:center;gap:18px;
+  margin:0 0 26px;
+}
+.sec-title span{
+  font-size:30px;font-weight:bold;letter-spacing:5px;white-space:nowrap;
+  color:#ffd98a;
+  text-shadow:0 0 16px rgba(255,150,40,.9),0 2px 5px rgba(0,0,0,.95);
+}
+.sec-title i{
+  flex:1;height:2px;max-width:230px;
+  background:linear-gradient(90deg,rgba(255,190,90,0),rgba(255,190,90,.85),rgba(255,190,90,0));
+}
+.block{padding-top:52px}
+.block:first-child{padding-top:36px}
+
+/* ================= 按钮 ================= */
+.nav-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:26px 32px;
+}
 .nav-btn{
-	display:block;
-	width:373px;
-	height:74px;
-	line-height:74px;
-	text-align:center;
-	text-decoration:none;
-	border:1px solid rgba(255,235,180,.55);  /* 外圈浅色描边 */
-	border-radius:10px;
-	/* ① 磨砂颗粒纹理 + ② 顶部高光/底部暖金 + ③ 中心亮橙辉光,边缘深红 */
-	background:
-		url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='120' height='120' filter='url(%23n)' opacity='0.85'/></svg>"),
-		linear-gradient(180deg,
-			rgba(255,255,255,.70) 0%,
-			rgba(255,255,255,.10) 8%,
-			rgba(255,255,255,0)   20%,
-			rgba(255,255,255,0)   76%,
-			rgba(255,224,150,.50) 92%,
-			rgba(255,224,150,.20) 100%),
-		radial-gradient(ellipse 60% 74% at 50% 45%,
-			#FF9A30 0%,
-			#F05216 40%,
-			#C22E06 72%,
-			#8C0400 100%);
-	background-blend-mode:overlay, normal, normal;
-	/* 金色文字:深棕描边 + 暖光晕(还原原图金字) */
-	color:#FFCE6B;
-	font-size:28px;
-	font-weight:bold;
-	letter-spacing:2px;
-	text-shadow:
-		-1px 0 0 #7A3200, 1px 0 0 #7A3200,
-		0 -1px 0 #7A3200, 0 1px 0 #7A3200,
-		0 0 8px rgba(255,190,60,.95),
-		0 2px 3px rgba(0,0,0,.5);
-	/* 立体浮雕光感 */
-	box-shadow:inset 0 1px 2px rgba(255,255,255,.6),
-		inset 0 -2px 4px rgba(0,0,0,.3),
-		0 3px 6px rgba(0,0,0,.4);
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  height:82px;padding:0 10px;
+  text-align:center;text-decoration:none;
+  border:1px solid rgba(255,235,180,.55);
+  border-radius:12px;
+  background:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='120' height='120' filter='url(%23n)' opacity='0.85'/></svg>"),
+    linear-gradient(180deg,
+      rgba(255,255,255,.70) 0%,
+      rgba(255,255,255,.10) 8%,
+      rgba(255,255,255,0)   20%,
+      rgba(255,255,255,0)   76%,
+      rgba(255,224,150,.50) 92%,
+      rgba(255,224,150,.20) 100%),
+    radial-gradient(ellipse 60% 74% at 50% 45%,
+      #FF9A30 0%,#F05216 40%,#C22E06 72%,#8C0400 100%);
+  background-blend-mode:overlay,normal,normal;
+  color:#FFCE6B;
+  font-size:26px;font-weight:bold;letter-spacing:2px;
+  text-shadow:
+    -1px 0 0 #7A3200, 1px 0 0 #7A3200,
+    0 -1px 0 #7A3200, 0 1px 0 #7A3200,
+    0 0 8px rgba(255,190,60,.95),
+    0 2px 3px rgba(0,0,0,.5);
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.6),
+    inset 0 -2px 4px rgba(0,0,0,.3),
+    0 3px 8px rgba(0,0,0,.5);
+  transition:transform .18s ease,filter .18s ease,box-shadow .18s ease;
+  overflow:hidden;
+}
+.nav-btn::before{
+  content:"";
+  position:absolute;top:0;left:-120%;width:60%;height:100%;
+  background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0));
+  transform:skewX(-20deg);
+  transition:left .5s ease;
+  pointer-events:none;
 }
 .nav-btn:hover{
-	filter:brightness(1.12);  /* 鼠标悬停时整体提亮(可改/删) */
+  transform:translateY(-3px);
+  filter:brightness(1.14) saturate(1.08);
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.7),
+    inset 0 -2px 4px rgba(0,0,0,.3),
+    0 0 26px rgba(255,150,40,.85),
+    0 8px 18px rgba(0,0,0,.6);
+}
+.nav-btn:hover::before{left:130%}
+.nav-btn:active{transform:translateY(-1px) scale(.99)}
+.nav-btn b{position:relative;z-index:1}
+.nav-btn.primary{font-size:28px;border-color:rgba(255,245,205,.85)}
+
+/* ================= 二维码卡片 ================= */
+.qr-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:26px;
+  max-width:1000px;margin:0 auto;
+}
+.qr-card{
+  padding:18px 14px 16px;text-align:center;
+  border:1px solid rgba(255,205,110,.34);
+  border-radius:14px;
+  background:linear-gradient(180deg,rgba(46,10,10,.86),rgba(18,6,8,.92));
+  box-shadow:inset 0 1px 0 rgba(255,220,140,.18),0 8px 22px rgba(0,0,0,.55);
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
+}
+.qr-card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(255,215,120,.75);
+  box-shadow:inset 0 1px 0 rgba(255,220,140,.3),0 0 28px rgba(255,140,40,.5),0 16px 30px rgba(0,0,0,.65);
+}
+.qr-card .pic{
+  display:block;width:100%;height:auto;aspect-ratio:1/1;
+  border-radius:10px;background:#fff;
+}
+.qr-card .name{
+  margin-top:13px;font-size:21px;font-weight:bold;letter-spacing:1px;
+  color:#ffe1a3;
+  text-shadow:0 0 10px rgba(255,150,40,.75),0 2px 4px rgba(0,0,0,.9);
+}
+.qr-card .desc{
+  margin-top:7px;font-size:13px;line-height:1.55;
+  color:rgba(255,224,180,.7);
+}
+
+/* ================= 页脚 ================= */
+.foot{padding:44px 20px 40px;text-align:center}
+.foot .copy{
+  font-size:23px;font-weight:bold;letter-spacing:3px;color:#ffd98a;
+  text-shadow:0 0 14px rgba(255,150,40,.85),0 2px 5px rgba(0,0,0,.95);
+}
+.foot .tips{
+  margin-top:15px;font-size:14px;line-height:2;
+  color:rgba(255,232,200,.9);
+  text-shadow:0 2px 4px rgba(0,0,0,.9);
+}
+
+/* ================= 响应式 ================= */
+@media (max-width:900px){
+  .nav-grid{grid-template-columns:repeat(2,1fr);gap:18px}
+  .nav-btn{height:68px;font-size:20px;letter-spacing:1px}
+  .nav-btn.primary{font-size:21px}
+  .qr-grid{grid-template-columns:repeat(2,1fr);gap:18px}
+  .sec-title span{font-size:23px;letter-spacing:3px}
+  .sec-title i{max-width:60px}
+  .block{padding-top:40px}
+}
+@media (max-width:520px){
+  .nav-grid{grid-template-columns:1fr;gap:14px}
+  .nav-btn{height:60px;font-size:18px}
+  .nav-btn.primary{font-size:19px}
+  .qr-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .qr-card{padding:12px 10px 12px}
+  .qr-card .name{font-size:16px}
+  .qr-card .desc{font-size:11px}
+  .foot{padding:30px 16px 28px}
+  .foot .copy{font-size:17px;letter-spacing:2px}
+  .foot .tips{font-size:12px}
 }
 </style>
 </head>
-
 <body>
-<div align="center" style="background:url(images/dh_01.jpg) center center; width:100%; height:474px;"></div>
-<div align="center" style="background:url(images/dh_02.jpg) center center; width:100%; height:296px;">
-	<div align="center" style="margin:0 auto; width:1200px;">
-<table width="1200" height="164" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <!-- 下面6个导航按钮:文字直接在这里改,纯色样式在 .nav-btn -->
-    <td width="372" valign="bottom"><div align="center"><a href="https://wwbms.lanzoub.com/irDm849sws4b"><span class="nav-btn">【游戏下载】</span></a></div></td>
-    <td width="400" valign="bottom"><div align="center"><a href="ziyemian/176gongyi.html"><span class="nav-btn">【176特色公益】</span></a></div></td>
 
-    <td width="400" valign="bottom"><div align="center"><a href="https://z.yy.com/2jH58kTkdV44"><span class="nav-btn">YY频道:1455947997</span></a></div></td>
+<div class="poster">
 
+  <!-- 第 1 段：dh_01 -->
+  <div class="band1"></div>
 
-  </tr>
-  <tr>
-    <td valign="bottom">&nbsp;</td>
-    <td valign="bottom">&nbsp;</td>
-    <td valign="bottom">&nbsp;</td>
-  </tr>
-  <tr>
-    <td valign="bottom"><div align="center"><a href="https://v.douyin.com/bBBknurrQsc/"><span class="nav-btn">抖音：温州小胖传奇</span></a></div></td>
-    <td valign="bottom"><div align="center"><a href="https://www.kuaishou.com/profile/3xiegunef7ta82u?source=SEARCH"><span class="nav-btn">快手号：温州小胖传奇</span></a></div></td>
-    <td valign="bottom"><div align="center"><a href="pay3.html"><span class="nav-btn">在线充值</span></a></div></td>
-  </tr>
-  <tr>
-    <td colspan="3" valign="bottom">
-      <div align="center">
-        <table border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td width="220">
-              <div align="center" style="padding-top:50px;"><img src="managesystem/uploadfiles/DiYi TZ.png" width="186" height="186" /></div>
-              <div align="center" style=" font-size:24px; color:#FFF; font-weight:bold;">公益一统战群</div>
-              </td>
-            <td width="220">
-              <div align="center" style="padding-top:50px;"><img src="managesystem/uploadfiles/KeFu WX.png" width="186" height="186" /></div>
-              <div align="center" style=" font-size:24px; color:#FFF; font-weight:bold;">客服微信</div>
-              </td>
-            <td width="220">
-              <div align="center" style="padding-top:50px;"><img src="managesystem/uploadfiles/QQ hao.png" width="186" height="186" /></div>
-              <div align="center" style=" font-size:24px; color:#FFF; font-weight:bold;">客服QQ</div>
-              </td>
-            <td width="220">
-              <div align="center" style="padding-top:50px;"><img src="managesystem/uploadfiles/QQ qun.png" width="186" height="186" /></div>
-              <div align="center" style=" font-size:24px; color:#FFF; font-weight:bold;">QQ群</div>
-              </td>
-            <td width="220">
-              <div align="center" style="padding-top:50px;"><img src="managesystem/uploadfiles/DiYi TZ.png" width="186" height="186" /></div>
-              <div align="center" style=" font-size:24px; color:#FFF; font-weight:bold;">公益一统战群</div>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </td>
-  </tr>
-</table>
+  <!-- 第 2 段：dh_02 + 主体内容 -->
+  <div class="band2">
+    <div class="bg"></div>
+    <div class="shade"></div>
+
+    <div class="layer">
+      <div class="wrap">
+
+        <section class="block">
+          <div class="sec-title"><i></i><span>快 速 入 口</span><i></i></div>
+          <div class="nav-grid">
+            <a class="nav-btn primary" href="https://wwbms.lanzoub.com/irDm849sws4b"><b>【游戏下载】</b></a>
+            <a class="nav-btn primary" href="ziyemian/176gongyi.html"><b>【176特色公益】</b></a>
+            <a class="nav-btn primary" href="https://z.yy.com/2jH58kTkdV44"><b>YY频道:1455947997</b></a>
+            <a class="nav-btn" href="https://v.douyin.com/bBBknurrQsc/"><b>抖音：温州小胖传奇</b></a>
+            <a class="nav-btn" href="https://www.kuaishou.com/profile/3xiegunef7ta82u?source=SEARCH"><b>快手号：温州小胖传奇</b></a>
+            <a class="nav-btn" href="pay3.html"><b>在线充值</b></a>
+          </div>
+        </section>
+
+        <section class="block">
+          <div class="sec-title"><i></i><span>联 系 我 们</span><i></i></div>
+          <div class="qr-grid">
+            <div class="qr-card">
+              <img class="pic" src="upload/DiYi TZ.png" alt="公益一统战群二维码">
+              <div class="name">公益一统战群</div>
+              <div class="desc">扫码进入统战群<br>最新开区通知</div>
+            </div>
+            <div class="qr-card">
+              <img class="pic" src="upload/KeFu WX.png" alt="客服微信二维码">
+              <div class="name">客服微信</div>
+              <div class="desc">扫码添加客服<br>问题与建议反馈</div>
+            </div>
+            <div class="qr-card">
+              <img class="pic" src="upload/QQ hao.png" alt="客服QQ二维码">
+              <div class="name">客服QQ</div>
+              <div class="desc">扫码添加客服QQ<br>充值疑问咨询</div>
+            </div>
+            <div class="qr-card">
+              <img class="pic" src="upload/QQ qun.png" alt="QQ群二维码">
+              <div class="name">QQ群</div>
+              <div class="desc">扫码加入玩家群<br>组队打宝交流</div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
   </div>
+
+  <!-- 第 3 段：dh_03 + 页脚 -->
+  <div class="band3">
+    <div class="bg"></div>
+    <div class="layer">
+      <div class="foot">
+        <div class="copy">温州小胖传奇 · 1.76特色公益零充版</div>
+        <div class="tips">
+          抵制不良游戏，拒绝盗版游戏，注意自我保护，谨防受骗上当<br>
+          合适游戏益脑，沉迷游戏伤身，合理安排时间，享受健康生活
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
-<div align="center" style="background:url(images/dh_03.jpg) center center; width:100%; height:310px;">
-</div>
-</body>
-</html>
 
 <script>
 document.addEventListener('DOMContentLoaded', async () => {
   const hashKey = 'page_hash_wzxpcq';
   const oldHash = localStorage.getItem(hashKey) || '';
   try {
-    // 无缓存拉取当前页面完整源码
     const res = await fetch(`${location.href}?_t=${Date.now()}`, { cache: 'no-store' });
     const htmlText = await res.text();
-    // 截取前2000字符生成简易标识，减少计算量
-    const pageMark = btoa(htmlText.slice(0, 2000));
+    const pageMark = btoa(unescape(encodeURIComponent(htmlText.slice(0, 2000))));
     if (pageMark !== oldHash) {
       localStorage.setItem(hashKey, pageMark);
       location.reload(true);
@@ -134,3 +311,5 @@ document.addEventListener('DOMContentLoaded', async () => {
   } catch (e) {}
 });
 </script>
+</body>
+</html>
