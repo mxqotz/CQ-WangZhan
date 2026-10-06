@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>游戏下载 · 温州小胖传奇</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  font-family:"Microsoft YaHei","微软雅黑",-apple-system,"PingFang SC",sans-serif;
+  min-height:100vh;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% 0%,rgba(150,22,10,.5),rgba(18,6,10,0) 72%),
+    url(../images/dh_02.jpg) center top/cover no-repeat fixed,
+    #12060a;
+  color:#f3e3c4;
+}
+.wrap{
+  width:900px;max-width:100%;
+  margin:0 auto;
+  padding:56px 20px 70px;
+}
+
+/* 返回 */
+.back{
+  display:inline-flex;align-items:center;gap:8px;
+  margin-bottom:26px;
+  padding:10px 20px;
+  font-size:15px;text-decoration:none;
+  color:#ffd98a;
+  border:1px solid rgba(255,205,110,.4);
+  border-radius:30px;
+  background:rgba(40,10,10,.6);
+  transition:all .2s ease;
+}
+.back:hover{
+  color:#fff;
+  border-color:rgba(255,215,120,.85);
+  background:rgba(150,30,12,.7);
+  box-shadow:0 0 20px rgba(255,140,40,.5);
+}
+
+/* 头部 */
+.head{text-align:center;margin-bottom:40px}
+.head h1{
+  margin:0;
+  font-size:46px;letter-spacing:6px;
+  color:#ffd98a;
+  text-shadow:0 0 22px rgba(255,150,40,.9),0 3px 6px rgba(0,0,0,.9);
+}
+.head .site{
+  margin-top:12px;
+  font-size:17px;letter-spacing:2px;
+  color:rgba(255,224,180,.75);
+}
+.head .line{
+  width:200px;height:2px;margin:22px auto 0;
+  background:linear-gradient(90deg,rgba(255,190,90,0),rgba(255,190,90,.9),rgba(255,190,90,0));
+}
+
+/* 卡片 */
+.card{
+  margin-bottom:24px;
+  padding:28px 30px;
+  border:1px solid rgba(255,205,110,.3);
+  border-radius:14px;
+  background:linear-gradient(180deg,rgba(58,14,12,.78),rgba(22,7,9,.9));
+  box-shadow:
+    inset 0 1px 0 rgba(255,220,140,.18),
+    0 10px 26px rgba(0,0,0,.5);
+}
+.card h2{
+  margin:0 0 18px;
+  padding-left:16px;
+  font-size:24px;letter-spacing:2px;
+  color:#ffd98a;
+  border-left:4px solid #e8620f;
+  text-shadow:0 0 12px rgba(255,150,40,.6);
+}
+
+/* ============ 主下载按钮（直接下载） ============ */
+.dl-main{
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  height:100px;
+  margin-top:6px;
+  text-decoration:none;
+  color:#FFCE6B;
+  border:1px solid rgba(255,245,205,.85);
+  border-radius:12px;
+  background:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='120' height='120' filter='url(%23n)' opacity='0.85'/></svg>"),
+    linear-gradient(180deg,rgba(255,255,255,.70) 0%,rgba(255,255,255,.10) 8%,rgba(255,255,255,0) 20%,rgba(255,255,255,0) 76%,rgba(255,224,150,.50) 92%,rgba(255,224,150,.20) 100%),
+    radial-gradient(ellipse 60% 74% at 50% 45%,#FF9A30 0%,#F05216 40%,#C22E06 72%,#8C0400 100%);
+  background-blend-mode:overlay,normal,normal;
+  text-shadow:
+    -1px 0 0 #7A3200, 1px 0 0 #7A3200,
+    0 -1px 0 #7A3200, 0 1px 0 #7A3200,
+    0 0 8px rgba(255,190,60,.95),
+    0 2px 3px rgba(0,0,0,.5);
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.6),
+    inset 0 -2px 4px rgba(0,0,0,.3),
+    0 4px 10px rgba(0,0,0,.45);
+  transition:transform .18s ease,filter .18s ease,box-shadow .18s ease;
+  overflow:hidden;
+}
+.dl-main::before{
+  content:"";
+  position:absolute;top:0;left:-120%;width:60%;height:100%;
+  background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0));
+  transform:skewX(-20deg);
+  transition:left .5s ease;
+  pointer-events:none;
+}
+.dl-main:hover{
+  transform:translateY(-3px);
+  filter:brightness(1.14) saturate(1.08);
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.7),
+    inset 0 -2px 4px rgba(0,0,0,.3),
+    0 0 30px rgba(255,150,40,.85),
+    0 10px 22px rgba(0,0,0,.55);
+}
+.dl-main:hover::before{left:130%}
+.dl-main:active{transform:translateY(-1px) scale(.995)}
+.dl-main .inner{position:relative;z-index:1;text-align:center;line-height:1.3}
+.dl-main .t1{display:block;font-size:32px;font-weight:bold;letter-spacing:4px}
+.dl-main .t2{
+  display:block;margin-top:5px;
+  font-size:14px;font-weight:normal;letter-spacing:1px;
+  color:rgba(255,240,200,.92);
+  text-shadow:0 1px 2px rgba(0,0,0,.75);
+}
+.dl-main .badge{
+  position:absolute;top:0;right:0;z-index:2;
+  padding:5px 14px;
+  font-size:13px;font-weight:bold;letter-spacing:1px;
+  color:#5b1a00;
+  background:linear-gradient(180deg,#ffe08a,#ffab2e);
+  border-radius:0 11px 0 12px;
+  box-shadow:0 2px 6px rgba(0,0,0,.5);
+}
+
+/* ============ 备用下载按钮（网盘） ============ */
+.dl-alt{
+  display:flex;align-items:center;justify-content:center;
+  height:76px;
+  text-decoration:none;
+  color:#ffd98a;
+  border:1px solid rgba(255,205,110,.5);
+  border-radius:12px;
+  background:linear-gradient(180deg,rgba(72,20,14,.9),rgba(30,9,10,.92));
+  box-shadow:inset 0 1px 0 rgba(255,220,140,.16),0 4px 10px rgba(0,0,0,.45);
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease,background .18s ease;
+}
+.dl-alt:hover{
+  transform:translateY(-3px);
+  color:#fff;
+  border-color:rgba(255,215,120,.9);
+  background:linear-gradient(180deg,rgba(120,32,14,.92),rgba(48,12,10,.94));
+  box-shadow:inset 0 1px 0 rgba(255,220,140,.3),0 0 24px rgba(255,140,40,.6),0 10px 20px rgba(0,0,0,.5);
+}
+.dl-alt:active{transform:translateY(-1px) scale(.995)}
+.dl-alt .inner{text-align:center;line-height:1.3}
+.dl-alt .t1{display:block;font-size:24px;font-weight:bold;letter-spacing:3px}
+.dl-alt .t2{
+  display:block;margin-top:4px;
+  font-size:13px;font-weight:normal;letter-spacing:1px;
+  color:rgba(255,224,180,.72);
+}
+
+/* 提取码行 */
+.pwd{
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  flex-wrap:wrap;
+  margin-top:16px;
+  font-size:15px;
+  color:rgba(255,224,180,.85);
+}
+.pwd b{
+  padding:6px 16px;
+  font-size:19px;letter-spacing:3px;
+  color:#FFCE6B;
+  border:1px dashed rgba(255,205,110,.6);
+  border-radius:8px;
+  background:rgba(255,190,90,.08);
+  text-shadow:0 0 10px rgba(255,150,40,.8);
+}
+.pwd .copy{
+  padding:6px 16px;
+  font-family:inherit;font-size:14px;
+  color:#ffd98a;
+  cursor:pointer;
+  border:1px solid rgba(255,205,110,.45);
+  border-radius:8px;
+  background:rgba(40,10,10,.65);
+  transition:all .2s ease;
+}
+.pwd .copy:hover{
+  color:#fff;
+  border-color:rgba(255,215,120,.9);
+  background:rgba(150,30,12,.7);
+  box-shadow:0 0 18px rgba(255,140,40,.5);
+}
+.pwd .copy.ok{color:#9dffb0;border-color:rgba(120,255,150,.6)}
+
+/* 提示 */
+.notice{
+  margin-top:22px;
+  padding:14px 18px;
+  font-size:14px;line-height:1.9;
+  text-align:center;
+  color:rgba(255,224,180,.7);
+  border-top:1px dashed rgba(255,205,110,.25);
+}
+.notice em{font-style:normal;color:#ffce6b}
+
+/* 步骤 */
+.steps{margin:0;padding:0;list-style:none;counter-reset:s}
+.steps li{
+  position:relative;
+  padding:12px 14px 12px 52px;
+  margin-bottom:10px;
+  font-size:16px;line-height:1.7;
+  color:#f6e6c8;
+  border-radius:9px;
+  background:rgba(255,190,90,.06);
+  border:1px solid rgba(255,205,110,.16);
+}
+.steps li:last-child{margin-bottom:0}
+.steps li::before{
+  counter-increment:s;
+  content:counter(s);
+  position:absolute;left:14px;top:50%;transform:translateY(-50%);
+  display:flex;align-items:center;justify-content:center;
+  width:26px;height:26px;
+  font-size:14px;font-weight:bold;color:#5b1a00;
+  border-radius:50%;
+  background:linear-gradient(180deg,#ffe08a,#ffab2e);
+  box-shadow:0 2px 6px rgba(0,0,0,.45);
+}
+
+@media (max-width:760px){
+  .wrap{padding:34px 16px 50px}
+  .head h1{font-size:30px;letter-spacing:3px}
+  .head .site{font-size:14px}
+  .card{padding:20px 18px}
+  .card h2{font-size:19px;margin-bottom:14px}
+  .dl-main{height:86px}
+  .dl-main .t1{font-size:23px;letter-spacing:2px}
+  .dl-main .t2{font-size:12px}
+  .dl-main .badge{font-size:11px;padding:4px 10px}
+  .dl-alt{height:66px}
+  .dl-alt .t1{font-size:19px;letter-spacing:2px}
+  .dl-alt .t2{font-size:12px}
+  .pwd{font-size:13px;gap:9px}
+  .pwd b{font-size:17px}
+  .steps li{font-size:14px;padding:11px 12px 11px 46px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="../index.html">← 返回首页</a>
+
+  <div class="head">
+    <h1>游 戏 下 载</h1>
+    <div class="site">wzxpcq.com</div>
+    <div class="line"></div>
+  </div>
+
+  <!-- 直接下载（主推，走本站 CDN，免密码） -->
+  <div class="card">
+    <h2>直接下载</h2>
+    <a class="dl-main" href="../Dengluqi/温州小胖传奇1006登器.zip" download>
+      <span class="badge">推荐 · 免密码</span>
+      <span class="inner">
+        <span class="t1">点 击 下 载 登 录 器</span>
+        <span class="t2">本站直连高速下载 · 无需提取码</span>
+      </span>
+    </a>
+    <div class="notice">
+      本站直连下载 <em>不需要提取码</em>，速度最快，请优先使用这个。
+    </div>
+  </div>
+
+  <!-- 备用链接（网盘） -->
+  <div class="card">
+    <h2>备用链接下载</h2>
+    <a class="dl-alt" href="https://wwbms.lanzoub.com/i7SZP4azzw0h" target="_blank" rel="noopener">
+      <span class="inner">
+        <span class="t1">蓝 奏 云 网 盘 下 载</span>
+        <span class="t2">直接下载失败时使用 · 需输入提取码</span>
+      </span>
+    </a>
+    <div class="pwd">
+      <span>提取码</span>
+      <b id="pwdText">eoqp</b>
+      <button class="copy" id="copyBtn" type="button">复制提取码</button>
+    </div>
+    <div class="notice">
+      网盘链接打开后需要 <em>手动输入提取码</em>，请先把上面的提取码复制好。
+    </div>
+  </div>
+
+  <!-- 下载说明 -->
+  <div class="card">
+    <h2>下载说明</h2>
+    <ul class="steps">
+      <li>推荐直接点上面的「直接下载」，本站直连、免提取码、速度最快。</li>
+      <li>下载完成后解压到任意目录（<b>路径不要带中文以外的特殊符号</b>），双击登录器运行。</li>
+      <li>首次登录会自动更新，请耐心等待更新完成，中途不要关闭。</li>
+      <li>杀毒软件若误报，请把登录器目录加入信任白名单再运行。</li>
+    </ul>
+    <div class="notice">
+      抵制不良游戏，拒绝盗版游戏，注意自我保护，谨防受骗上当
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var btn = document.getElementById('copyBtn');
+  var txt = document.getElementById('pwdText');
+  if(!btn || !txt) return;
+
+  function done(){
+    var old = btn.textContent;
+    btn.textContent = '已复制 ✓';
+    btn.classList.add('ok');
+    setTimeout(function(){
+      btn.textContent = old;
+      btn.classList.remove('ok');
+    }, 1600);
+  }
+
+  btn.addEventListener('click', function(){
+    var code = txt.textContent.trim();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(code).then(done).catch(fallback);
+    } else {
+      fallback();
+    }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = code;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); done(); } catch(e) {}
+      document.body.removeChild(ta);
+    }
+  });
+})();
+</script>
+</body>
+</html>
