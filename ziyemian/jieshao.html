@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>游戏介绍 · 温州小胖传奇</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Microsoft YaHei","微软雅黑",-apple-system,"PingFang SC",sans-serif;
+  min-height:100vh;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% 0%,rgba(150,22,10,.5),rgba(18,6,10,0) 72%),
+    url(../images/dh_02.jpg) center top/cover no-repeat fixed,
+    #12060a;
+  color:#f3e3c4;
+}
+.wrap{
+  width:960px;max-width:100%;
+  margin:0 auto;
+  padding:56px 20px 70px;
+}
+
+/* 返回 */
+.back{
+  display:inline-flex;align-items:center;gap:8px;
+  margin-bottom:26px;
+  padding:10px 20px;
+  font-size:15px;text-decoration:none;
+  color:#ffd98a;
+  border:1px solid rgba(255,205,110,.4);
+  border-radius:30px;
+  background:rgba(40,10,10,.6);
+  transition:all .2s ease;
+}
+.back:hover{
+  color:#fff;
+  border-color:rgba(255,215,120,.85);
+  background:rgba(150,30,12,.7);
+  box-shadow:0 0 20px rgba(255,140,40,.5);
+}
+
+/* 头部 */
+.head{text-align:center;margin-bottom:32px}
+.head h1{
+  margin:0;
+  font-size:46px;letter-spacing:6px;
+  color:#ffd98a;
+  text-shadow:0 0 22px rgba(255,150,40,.9),0 3px 6px rgba(0,0,0,.9);
+}
+.head .site{
+  margin-top:12px;
+  font-size:17px;letter-spacing:2px;
+  color:rgba(255,224,180,.75);
+}
+.head .line{
+  width:200px;height:2px;margin:22px auto 0;
+  background:linear-gradient(90deg,rgba(255,190,90,0),rgba(255,190,90,.9),rgba(255,190,90,0));
+}
+
+/* ================= 目录 ================= */
+.toc{
+  margin-bottom:26px;
+  padding:20px 22px;
+  border:1px solid rgba(255,205,110,.3);
+  border-radius:14px;
+  background:linear-gradient(180deg,rgba(58,14,12,.8),rgba(22,7,9,.9));
+  box-shadow:inset 0 1px 0 rgba(255,220,140,.18),0 10px 26px rgba(0,0,0,.5);
+}
+.toc .toc-title{
+  margin-bottom:14px;
+  font-size:16px;letter-spacing:2px;
+  color:#ffd98a;
+  text-shadow:0 0 12px rgba(255,150,40,.6);
+}
+.toc-grid{
+  display:flex;flex-wrap:wrap;gap:10px;
+}
+.toc a{
+  padding:9px 18px;
+  font-size:15px;letter-spacing:1px;text-decoration:none;
+  color:#ffd98a;
+  border:1px solid rgba(255,205,110,.35);
+  border-radius:24px;
+  background:rgba(50,12,10,.7);
+  transition:all .2s ease;
+}
+.toc a:hover{
+  color:#fff;
+  border-color:rgba(255,215,120,.9);
+  background:rgba(150,30,12,.75);
+  box-shadow:0 0 18px rgba(255,140,40,.55);
+  transform:translateY(-2px);
+}
+
+/* ================= 卡片 ================= */
+.card{
+  margin-bottom:24px;
+  padding:28px 30px;
+  border:1px solid rgba(255,205,110,.3);
+  border-radius:14px;
+  background:linear-gradient(180deg,rgba(58,14,12,.78),rgba(22,7,9,.9));
+  box-shadow:
+    inset 0 1px 0 rgba(255,220,140,.18),
+    0 10px 26px rgba(0,0,0,.5);
+  scroll-margin-top:20px;
+}
+.card h2{
+  margin:0 0 18px;
+  padding-left:16px;
+  font-size:24px;letter-spacing:2px;
+  color:#ffd98a;
+  border-left:4px solid #e8620f;
+  text-shadow:0 0 12px rgba(255,150,40,.6);
+}
+
+/* 内容条 */
+.items{margin:0;padding:0;list-style:none}
+.items li{
+  position:relative;
+  padding:12px 14px 12px 42px;
+  margin-bottom:10px;
+  font-size:17px;line-height:1.75;
+  color:#f6e6c8;
+  border-radius:9px;
+  background:rgba(255,190,90,.06);
+  border:1px solid rgba(255,205,110,.16);
+}
+.items li:last-child{margin-bottom:0}
+.items li::before{
+  content:"◆";
+  position:absolute;left:16px;top:14px;
+  font-size:14px;color:#ff9a30;
+  text-shadow:0 0 10px rgba(255,150,40,.9);
+}
+/* 重点：必爆 / 核心 */
+.items li.k-hot{
+  background:linear-gradient(90deg,rgba(255,120,30,.16),rgba(255,190,90,.05));
+  border-color:rgba(255,160,60,.45);
+  color:#ffeccd;
+}
+.items li.k-hot::before{content:"★";color:#ffb340}
+/* 注意：有风险 / 需准备 */
+.items li.k-warn{
+  background:rgba(200,180,60,.1);
+  border-color:rgba(230,200,90,.4);
+}
+.items li.k-warn::before{content:"！";font-weight:bold;color:#ffd44d}
+/* 福利：免费 / 白嫖 */
+.items li.k-free{
+  background:rgba(90,220,140,.09);
+  border-color:rgba(110,230,160,.4);
+}
+.items li.k-free::before{content:"✔";font-size:15px;color:#7ef0a8}
+
+/* 页脚 */
+.foot{
+  margin-top:34px;
+  padding-top:22px;
+  text-align:center;
+  font-size:14px;line-height:1.9;
+  color:rgba(255,224,180,.7);
+  border-top:1px dashed rgba(255,205,110,.25);
+}
+.foot em{font-style:normal;color:#ffce6b}
+.foot .backtop{
+  display:inline-block;
+  margin-top:14px;
+  padding:9px 22px;
+  font-size:14px;text-decoration:none;
+  color:#ffd98a;
+  border:1px solid rgba(255,205,110,.4);
+  border-radius:24px;
+  background:rgba(40,10,10,.6);
+  transition:all .2s ease;
+}
+.foot .backtop:hover{
+  color:#fff;
+  border-color:rgba(255,215,120,.85);
+  background:rgba(150,30,12,.7);
+  box-shadow:0 0 18px rgba(255,140,40,.5);
+}
+
+/* ================= 悬浮回目录按钮 ================= */
+.fab{
+  position:fixed;
+  right:26px;bottom:34px;
+  z-index:60;
+  width:74px;height:74px;
+  display:flex;align-items:center;justify-content:center;
+  padding:0;
+  font-family:inherit;
+  cursor:pointer;
+  border:none;
+  border-radius:50%;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(16px) scale(.9);
+  transition:opacity .28s ease,transform .28s ease,visibility .28s ease;
+  -webkit-tap-highlight-color:transparent;
+}
+.fab.show{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
+.fab:active{transform:translateY(0) scale(.95)}
+
+/* 外圈进度环 */
+.fab .ring{
+  position:absolute;inset:0;
+  border-radius:50%;
+  transform:rotate(-90deg);
+}
+.fab .ring circle{
+  fill:none;
+  stroke-width:3.5;
+  stroke-linecap:round;
+}
+.fab .ring .bgc{stroke:rgba(255,205,110,.22)}
+.fab .ring .fgc{
+  stroke:#ffb340;
+  stroke-dasharray:var(--c) var(--c);
+  stroke-dashoffset:var(--o);
+  filter:drop-shadow(0 0 4px rgba(255,150,40,.9));
+  transition:stroke-dashoffset .12s linear;
+}
+
+/* 内圆本体：橙红金属质感，与按钮同风格 */
+.fab .core{
+  position:absolute;
+  inset:6px;
+  border-radius:50%;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:1px;
+  color:#FFCE6B;
+  border:1px solid rgba(255,235,180,.62);
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.62) 0%,rgba(255,255,255,.08) 9%,rgba(255,255,255,0) 22%,rgba(255,255,255,0) 74%,rgba(255,224,150,.48) 92%,rgba(255,224,150,.18) 100%),
+    radial-gradient(ellipse 70% 70% at 50% 42%,#FF9A30 0%,#F05216 40%,#C22E06 72%,#8C0400 100%);
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.6),
+    inset 0 -2px 4px rgba(0,0,0,.3),
+    0 4px 14px rgba(0,0,0,.55);
+  text-shadow:0 1px 2px rgba(0,0,0,.7),0 0 8px rgba(255,190,60,.8);
+  transition:filter .2s ease,box-shadow .2s ease;
+}
+.fab .core .arw{font-size:20px;line-height:1;font-weight:bold}
+.fab .core .txt{font-size:11px;letter-spacing:1px;line-height:1}
+.fab:hover .core{
+  filter:brightness(1.15) saturate(1.1);
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.7),
+    inset 0 -2px 4px rgba(0,0,0,.3),
+    0 0 26px rgba(255,150,40,.85),
+    0 6px 18px rgba(0,0,0,.6);
+}
+
+/* 悬停气泡提示 */
+.fab .tip{
+  position:absolute;
+  right:84px;top:50%;transform:translateY(-50%) translateX(6px);
+  padding:7px 14px;
+  font-size:13px;white-space:nowrap;
+  color:#ffe1a3;
+  border:1px solid rgba(255,205,110,.45);
+  border-radius:8px;
+  background:rgba(24,8,8,.95);
+  box-shadow:0 4px 14px rgba(0,0,0,.6);
+  opacity:0;pointer-events:none;
+  transition:opacity .2s ease,transform .2s ease;
+}
+.fab:hover .tip{opacity:1;transform:translateY(-50%) translateX(0)}
+
+@media (max-width:760px){
+  .fab{right:16px;bottom:22px;width:64px;height:64px}
+  .fab .core{inset:5px}
+  .fab .core .arw{font-size:17px}
+  .fab .core .txt{font-size:10px;letter-spacing:.5px}
+  .fab .tip{display:none}
+}
+
+@media (max-width:760px){
+  .wrap{padding:34px 16px 50px}
+  .head h1{font-size:30px;letter-spacing:3px}
+  .head .site{font-size:14px}
+  .toc{padding:16px 15px}
+  .toc a{padding:8px 14px;font-size:13px}
+  .card{padding:20px 18px}
+  .card h2{font-size:19px;margin-bottom:14px}
+  .items li{font-size:15px;padding:11px 12px 11px 38px;line-height:1.7}
+  .items li::before{left:14px;top:12px}
+  .foot{font-size:12px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="../index.html">← 返回首页</a>
+
+  <div class="head">
+    <h1>游 戏 介 绍</h1>
+    <div class="site" id="slogan">温州小胖传奇 · 1.76 特色公益零充版</div>
+    <div class="line"></div>
+  </div>
+
+  <!-- 目录，由 jieshao-data.js 自动生成 -->
+  <div class="toc" id="tocTop">
+    <div class="toc-title">📖 内容目录 · 点击直达</div>
+    <div class="toc-grid" id="tocGrid"></div>
+  </div>
+
+  <!-- 卡片区，由 jieshao-data.js 自动生成 -->
+  <div id="cardArea"></div>
+
+  <div class="foot">
+    抵制不良游戏，拒绝盗版游戏，注意自我保护，谨防受骗上当<br>
+    合适游戏益脑，沉迷游戏伤身，合理安排时间，享受健康生活
+    <br>
+    <a class="backtop" href="#tocTop">↑ 回到目录</a>
+  </div>
+
+</div>
+
+<!-- 悬浮回目录按钮：滚动超过一屏后出现，圆环显示阅读进度 -->
+<button class="fab" id="fab" type="button" aria-label="回到目录">
+  <svg class="ring" viewBox="0 0 74 74" aria-hidden="true">
+    <circle class="bgc" cx="37" cy="37" r="34"></circle>
+    <circle class="fgc" id="fabRing" cx="37" cy="37" r="34" style="--c:213.6;--o:213.6"></circle>
+  </svg>
+  <span class="core">
+    <span class="arw">↑</span>
+    <span class="txt">目录</span>
+  </span>
+  <span class="tip">回到顶部目录</span>
+</button>
+
+<!-- 内容文件：以后只改这个 js 文件即可 -->
+<script src="jieshao-data.js"></script>
+<script>
+(function(){
+  var D = window.JIESHAO_DATA;
+  if (!D || !D.sections || !D.sections.length) {
+    document.getElementById('cardArea').innerHTML =
+      '<div class="card"><h2>提示</h2><ul class="items"><li>内容文件 jieshao-data.js 没有正常加载，请检查文件是否存在。</li></ul></div>';
+    return;
+  }
+
+  /* 页头副标题 */
+  var sloganEl = document.getElementById('slogan');
+  if (D.slogan) sloganEl.textContent = D.slogan;
+  if (D.version) document.title = '游戏介绍 · 温州小胖传奇 ' + D.version;
+
+  var toc = document.getElementById('tocGrid');
+  var area = document.getElementById('cardArea');
+
+  D.sections.forEach(function(sec){
+    /* --- 目录项 --- */
+    var a = document.createElement('a');
+    a.href = '#' + sec.id;
+    a.textContent = sec.title;
+    toc.appendChild(a);
+
+    /* --- 卡片 --- */
+    var card = document.createElement('div');
+    card.className = 'card';
+    card.id = sec.id;
+
+    var h2 = document.createElement('h2');
+    h2.textContent = '【' + sec.title + '】';
+    card.appendChild(h2);
+
+    var ul = document.createElement('ul');
+    ul.className = 'items';
+
+    (sec.items || []).forEach(function(it){
+      var text, kind;
+      if (typeof it === 'string') { text = it; kind = ''; }
+      else { text = it.t; kind = it.k || ''; }
+
+      var li = document.createElement('li');
+      if (kind) li.className = 'k-' + kind;
+      li.textContent = text;
+      ul.appendChild(li);
+    });
+
+    card.appendChild(ul);
+    area.appendChild(card);
+  });
+
+  /* ================= 悬浮回目录按钮 ================= */
+  var fab    = document.getElementById('fab');
+  var ring   = document.getElementById('fabRing');
+  var tocTop = document.getElementById('tocTop');
+  var C = 2 * Math.PI * 34;          /* 圆环周长，和 r=34 对应 */
+  var SHOW_AT = 320;                 /* 向下滚动多少像素后出现 */
+
+  function updateFab(){
+    var y   = window.pageYOffset || document.documentElement.scrollTop || 0;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+
+    /* 进度：0 = 页面顶部，1 = 页面底部 */
+    var p = max > 0 ? Math.min(1, Math.max(0, y / max)) : 0;
+    ring.style.setProperty('--o', (C * (1 - p)).toFixed(2));
+
+    /* 滚过一屏才出现，回到顶部自动隐藏 */
+    if (y > SHOW_AT) fab.classList.add('show');
+    else             fab.classList.remove('show');
+  }
+
+  /* 点击回到顶部目录 */
+  fab.addEventListener('click', function(){
+    tocTop.scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+
+  /* 被动监听，滚动性能好；首次执行一次定位状态 */
+  window.addEventListener('scroll', updateFab, { passive:true });
+  window.addEventListener('resize', updateFab);
+  updateFab();
+})();
+</script>
+</body>
+</html>
